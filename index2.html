@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html> Muutoksia laskuriin
+<head>
+<meta charset="UTF-8"> 
+<title>Laskuri</title>
+<style>
+.keski {
+    text-align: center;
+}
+
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: black;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: white
+</style>
+
+</head>
+<body>
+
+<center>
+<h1> Laskuri </h1>
+</center>
+<div class="keski">
+	<form name="luvut">
+		<input type="number" min="1" max="10" name="luku1">
+	<br />
+	<br />
+		<input type="number" min="1" max="10" name="luku2">
+	<br />
+	<br />
+		<input type="button" value=" Laske " onclick="Laske()">
+		<input type="reset" value=" Tyhjennä " onclick="window.location.reload()">
+		<input type="button" value=" Vaihda " onclick="Vaihda()">
+		
+		<br>
+	</form>
+<p id="summadiv"></p>
+<p id="erotusdiv"></p>
+<p id="tulodiv"></p>
+<p id="jakodiv"></p>
+<p id="luvut"></p>
+
+</div>
+<p><button onclick="myMove()">Paina tästä</button></p> 
+<div id ="container">
+  <div id ="animate"></div>
+
+<script>
+function Laske()
+{
+var luku1 = Number(document.forms["luvut"]["luku1"].value);
+var luku2 = Number(document.forms["luvut"]["luku2"].value);
+switch (luku1 > 10 || luku2 > 10 || luku1 < 1 || luku2 <1) {
+	case true:
+	window.alert("Luvut eivät ole välillä 1-10");
+	break;
+	default:
+var summa = luku1 + luku2;
+document.getElementById("summadiv").innerHTML = "Summa on " + summa;
+var erotus = luku1 - luku2;
+document.getElementById("erotusdiv").innerHTML = "Erotus on " + erotus;
+var tulo = luku1 * luku2;
+document.getElementById("tulodiv").innerHTML = "Tulo on " + tulo;
+var jako = luku1 / luku2;
+document.getElementById("jakodiv").innerHTML = "Jako on " + jako;
+var i = 0;
+var text ="";
+if (luku1 <= luku2) {
+for	(i = luku1; i <= luku2; i++) {
+text += i + " ";
+}
+}else {
+for (i = luku2; i <= luku1; i++) {
+text += i + " ";
+}
+}
+document.getElementById("luvut").innerHTML = "Luvut " + text;
+}
+}
+function Vaihda (){
+document.getElementById("summadiv").style.color = "red";
+document.getElementById("erotusdiv").style.font = "bold";
+document.getElementById("tulodiv").style.fontSize = "30px";
+
+}
+
+function myMove() {
+  var elem = document.getElementById("animate");   
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+      elem.style.left = pos + "px"; 
+    }
+  }
+}
+
+/* function Tyhja()
+{
+document.getElementById("summadiv").innerHTML= " ";
+document.getElementById("erotusdiv").innerHTML= " ";
+document.getElementById("tulodiv").innerHTML= " ";
+document.getElementById("jakodiv").innerHTML= " ";
+document.getElementById("luvut").innerHTML= " ";
+document.forms["luvut"]["luku1"].value)= " ";
+document.forms["luvut"]["luku2"].value)= " ";
+
+}
+
+*/
+
+	
+
+
+
+
+
+</script>
+</body>	
+</html> 
